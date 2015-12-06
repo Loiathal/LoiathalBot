@@ -37,7 +37,7 @@
                 <configuration>
                     <mainClass>LoiathalBotMain</mainClass>
                     <arguments>
-                        <argument>testargument</argument>
+                        <argument>#loiathal</argument>
                     </arguments>
                 </configuration>
             </plugin>

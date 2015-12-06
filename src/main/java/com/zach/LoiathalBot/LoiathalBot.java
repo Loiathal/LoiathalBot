@@ -1,5 +1,8 @@
 package com.zach.LoiathalBot;
 
+import com.zach.LoiathalBot.command.CommandFactory;
+import com.zach.LoiathalBot.command.CommandHandler;
+import com.zach.LoiathalBot.command.commands.Command;
 import org.apache.log4j.Logger;
 import org.jibble.pircbot.PircBot;
 
@@ -10,7 +13,6 @@ import org.jibble.pircbot.PircBot;
 public class LoiathalBot extends PircBot {
 
     static Logger logger = Logger.getLogger(LoiathalBot.class);
-
 
     public LoiathalBot() {
         this.setName("LoiathalBot");
@@ -27,7 +29,13 @@ public class LoiathalBot extends PircBot {
     protected void onMessage(String channel, String sender, String login, String hostname, String message)
     {
         super.onMessage(channel, sender, login, hostname, message);
-        System.out.println("fuck");
-        logger.error("someone sent a message " + message);
+        logger.debug("someone sent a message " + message);
+
+        if (message.charAt(0) == '!')
+        {
+            //This is a commands, handle appropriately
+            CommandHandler.INSTANCE.handleCommand(sender, login, hostname, message);
+
+        }
     }
 }
