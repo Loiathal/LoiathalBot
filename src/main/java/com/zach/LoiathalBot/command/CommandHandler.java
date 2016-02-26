@@ -27,17 +27,29 @@ public class CommandHandler {
             parameters = commandStringSplit[1];
         }
 
-        //TODO: Check user's access level
+        if (!checkAccessLevel(sender, commandString, parameters))
+        {
+            //TODO: Handle failed accessLevel
+        }
+        executeCommand(sender, commandString, parameters);
+    }
 
+    public boolean checkAccessLevel(String sender, String commandString, String parameters)
+    {
+        //TODO: Check access level!
+        return true;
+    }
+
+    public void executeCommand(String sender, String commandString, String parameters)
+    {
         try
         {
             Command command = CommandFactory.INSTANCE.createCommand(commandString);
             command.executeCommand(parameters);
 
         } catch (UnsupportedOperationException e) {
-            logger.error("Command " + commandString + " was not found");
+            logger.error("User sender " + "attempted to execute command " + commandString +
+                    " with parameters " + parameters);
         }
-
-
     }
 }

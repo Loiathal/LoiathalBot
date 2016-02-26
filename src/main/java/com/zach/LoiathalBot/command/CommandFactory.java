@@ -32,7 +32,7 @@ public class CommandFactory {
         Command command = commandMap.get(commandString);
         if (command == null)
         {
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("Command " + commandString + " does not exist");
         }
 
         return command;
